@@ -1,0 +1,66 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: node:14.17.0-buster
+    env: 
+      AWS_ACCESS_KEY_ID: nokey
+      AWS_SECRET_ACCESS_KEY: nosecret
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node-modules-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          node-modules-${{ hashFiles('yarn.lock') }}
+          node-modules-
+    
+    - name: Install Node packages
+      run: yarn install --frozen-lockfile --ignore-optional
+    
+    # - name: Run linter
+    #   run: yarn lint
+    
+    # - name: Run tests
+    #   run: yarn test --ci
+    
+    # - name: Build
+    #   run: yarn build
+
+    # - name: Build Lib
+    #   run: yarn build-lib
+  
+  publish:
+    if: github.ref == 'refs/heads/master'
+
+    runs-on: ubuntu-latest
+    container: node:14.17.0-buster
+    needs:
+      - build
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node-modules-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          node-modules-${{ hashFiles('yarn.lock') }}
+          node-modules-
+    
+    - name: Install Node packages
+      run: yarn install --frozen-lockfile --ignore-optional
+    
+    # - name: Build Lib
+    #   run: yarn build-lib
+    
+    - name: Publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: yarn release

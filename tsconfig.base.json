@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "lib": ["dom", "es2018"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "allowUnreachableCode": false,
+    "outDir": "lib",
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es2018",
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin"
+      }
+    ]
+  }
+}

@@ -1,18 +1,22 @@
 {
-  "name": "parquetjs",
+  "name": "@assetario/parquetjs",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com/"
+  },
   "description": "fully asynchronous, pure JavaScript implementation of the Parquet file format",
   "main": "parquet.js",
-  "version": "0.8.0",
-  "homepage": "https://github.com/ironSource/parquetjs",
-  "author": "ironSource <npm@ironsrc.com>",
-  "license": "MIT",
+  "homepage": "https://github.com/assetario/parquetjs",
+  "author": "Matus Kislan <matuskislan@gmail.com>",
+  "license": "UNLICENSED",
   "keywords": [
     "dremel",
     "parquet"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/ironSource/parquetjs.git"
+    "url": "git+https://github.com/assetario/parquetjs"
   },
   "dependencies": {
     "brotli": "^1.3.0",
@@ -25,13 +29,19 @@
     "varint": "^5.0.0"
   },
   "devDependencies": {
+    "@semantic-release/git": "^7.0.8",
     "chai": "^4.1.2",
-    "mocha": "^3.5.3"
+    "mocha": "^3.5.3",
+    "semantic-release": "^15.13.3"
   },
   "scripts": {
-    "test": "mocha"
+    "build": "tsc",
+    "lint": "eslint --ext .ts src/**",
+    "test": "jest --forceExit --detectOpenHandles -c jest.config.js",
+    "build-lib": "rm -rf lib/ && tsc --build tsconfig.lib.json",
+    "release": "semantic-release"
   },
   "engines": {
-    "node": ">=7.6"
+    "node": ">=14.6"
   }
 }

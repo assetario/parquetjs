@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "isolatedModules": true,
+    "declaration": false,
+    "module": "CommonJS",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "target": "es5",
+    "downlevelIteration": true
+  },
+  "include": [
+    "src/.d.ts",
+    "src"
+  ]
+}
