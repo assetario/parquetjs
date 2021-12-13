@@ -7,6 +7,7 @@
   },
   "description": "fully asynchronous, pure JavaScript implementation of the Parquet file format",
   "main": "parquet.js",
+  "types": "parquetjs.d.ts",
   "homepage": "https://github.com/assetario/parquetjs",
   "author": "Matus Kislan <matuskislan@gmail.com>",
   "license": "UNLICENSED",
